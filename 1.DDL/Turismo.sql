@@ -167,12 +167,66 @@ print 'tabla subregion creada'
 go
 
 
-IF OBJECT_ID('JSVM.ciudad', 'U') IS NOT NULL
+-- Validar existencia de la tabla Ciudad
+IF OBJECT_ID('JSVM.Ciudad', 'U') IS NOT NULL
 BEGIN 
-    DROP TABLE JSVM.SubRegion;
-    PRINT 'Tabla JSVM.ciudad eliminada';
+    DROP TABLE JSVM.Ciudad; -- Corregido: Ahora sí elimina Ciudad
+    PRINT 'Tabla JSVM.Ciudad eliminada';
 END 
 GO 
+
+-- Crear la tabla Ciudad
+CREATE TABLE JSVM.Ciudad (
+    idciudad int identity (1,1), 
+    nomciudad varchar(80) not null,
+    codigoubigeo varchar (6), -- Corregido el nombre de la columna
+    idsubregion int not null,
+    constraint PK_ciudad primary key (idciudad),
+    constraint FK_ciudad_subregion foreign key (idsubregion) references JSVM.SubRegion (idsubregion)
+);
+PRINT 'Tabla JSVM.Ciudad creada exitosamente';
+GO
+
+
+IF OBJECT_ID('RRHH.TipoDocumento', 'U') IS NOT NULL
+BEGIN 
+    DROP TABLE RRHH.TipoDocumento;
+    PRINT 'Tabla RRHH.TipoDocumento eliminada';
+END 
+GO 
+
+CREATE TABLE RRHH.TipoDocumento (
+idtipodocumento int identity (1,1), 
+nombredoc varchar(50) not null,
+abreviatura char(10) not null,
+constraint PK_tipodocumento
+primary key (idtipodocumento),
+constraint UQ_nombredoc UNIQUE (nombredoc),
+constraint UQ_abreviatura UNIQUE (abreviatura)
+);
+
+print 'Tabla tipodocumento creado'
+go 
+
+-- tabla persona 
+IF OBJECT_ID('RRHH.Persona', 'U') IS NOT NULL
+BEGIN 
+    DROP TABLE RRHH.T;
+    PRINT 'Tabla RRHH.TipoDocumento eliminada';
+END 
+GO 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
