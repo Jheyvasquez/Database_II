@@ -112,8 +112,8 @@ GO
 
 CREATE TABLE JSVM.Nacionalidad (
     id_nacionalidad int identity (1,1),
-    nom_nacionalidad varchar (80) not null, -- Falta la coma agregada
-    idpais int not null,                    -- Falta esta columna agregada
+    nom_nacionalidad varchar (80) not null, 
+    idpais int not null,                    
     constraint PK_nacionalidad primary key (id_nacionalidad),
     constraint UQ_nacionalidad UNIQUE (nom_nacionalidad),
     constraint FK_pais_nacionalidad foreign key (idpais) references JSVM.Pais (idpais)
@@ -133,8 +133,8 @@ GO
 CREATE TABLE JSVM.Region (
     idregion int identity(1,1), 
     nomregion varchar (80) not null,
-    codigoubigeo varchar (3) not null, -- Falta la coma agregada
-    idpais int not null,               -- Coma final eliminada
+    codigoubigeo varchar (3) not null, 
+    idpais int not null,               
     constraint PK_region primary key (idregion),
     constraint UQ_nomregion UNIQUE (nomregion),
     constraint FK_region_pais
@@ -179,7 +179,7 @@ GO
 CREATE TABLE JSVM.Ciudad (
     idciudad int identity (1,1), 
     nomciudad varchar(80) not null,
-    codigoubigeo varchar (6), -- Corregido el nombre de la columna
+    codigoubigeo varchar (6), 
     idsubregion int not null,
     constraint PK_ciudad primary key (idciudad),
     constraint FK_ciudad_subregion foreign key (idsubregion) references JSVM.SubRegion (idsubregion)
